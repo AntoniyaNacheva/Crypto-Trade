@@ -22,6 +22,6 @@ app.use(routes);
 
 //TODO: change database name
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://127.0.0.1:27017/crypto');
+mongoose.connect('mongodb://127.0.0.1:27017/crypto2Db');
 
 app.listen(3000, () => console.log('Server is running on port 3000...'));
