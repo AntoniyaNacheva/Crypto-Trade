@@ -33,7 +33,7 @@ router.get('/:cryptoId/edit', isAuth, async (req, res) => {
 		value: key,
 		label: paymentMethodsMap[key],
 		isSelected: crypto.paymentMethod == key
-		}));
+	}));
 
 	res.render('crypto/edit', { crypto, paymentMethods });
 });
@@ -47,6 +47,8 @@ router.post('/:cryptoId/edit', isAuth, async (req, res) => {
 });
 
 router.get('/:cryptoId/delete', isAuth, async (req, res) => {
+	await cryptoService.delete(req.params.cryptoId);
+
 	res.redirect('/crypto/catalog');
 
 });
