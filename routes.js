@@ -8,7 +8,7 @@ router.use(homeController);
 router.use(authController);
 router.use('/crypto', cryptoController);
 router.all('*', (req, res) => {
-	rea.render('home/404');
+	res.render('home/404');
 })
 
 module.exports = router;
