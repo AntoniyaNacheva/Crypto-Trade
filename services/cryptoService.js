@@ -5,6 +5,7 @@ exports.getAll = () => Crypto.find({}).lean();
 exports.getOne = (cryptoId) => Crypto.findById(cryptoId).lean();
 
 exports.search = async (name, paymentMethod) => {
+	// Memory filtration
 	let crypto = await this.getAll();
 
 	if (name) {
