@@ -4,6 +4,7 @@ const { isAuth } = require('../middlewares/authMiddleware');
 const cryptoService = require('../services/cryptoService');
 const { getErrorMessage } = require('../utils/errorUtils');
 const { getPaymentMethodViewData } = require('../utils/viewDataUtils');
+const { paymentMethodsMap } = require('../constants');
 
 router.get('/catalog', async (req, res) => {
 	const crypto = await cryptoService.getAll();
@@ -25,6 +26,8 @@ router.get('/:cryptoId/details', async (req, res) => {
 
 	const isOwner = crypto.owner == req.user?._id;
 	const isBuyer = crypto.buyers?.some(id => id == req.user?._id);
+
+	crypto.paymentMethod = paymentMethodsMap[crypto.paymentMethod];
 
 	res.render('crypto/details', { crypto, isOwner, isBuyer });
 });
